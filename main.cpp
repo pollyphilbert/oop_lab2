@@ -13,21 +13,42 @@ string subtractXY(string x, string y);
 string removeZero(string str);
 string multiply10(string str, int n);
 
+class LongNumberStr {
+public:
+	string s;
+	int length;
+
+
+	LongNumberStr appendZeroLng(LongNumberStr str, int n) {
+		while (n > 0) {
+			str.s = "0" + str.s;
+			n--;
+		}
+		return str;
+	}
+
+
+};
 int main() {
-	string x, y;
-	getline(cin, x);
-	getline(cin, y);
-	if (x == "0" || y == "0") {
+	LongNumberStr x;
+	LongNumberStr y;
+	LongNumberStr res;
+
+	//string x, y;
+	getline(cin, x.s);
+	getline(cin, y.s);
+	if (x.s == "0" || y.s == "0") {
 		cout << "0" << endl;
 	}
 	else {
-		if (x.length() > y.length()) {
-			y = appendZero(y, x.length() - y.length());
+		if (x.s.length() > y.s.length()) {
+			y = y.appendZeroLong(y, x.s.length() - y.s.length());
 		}
 		else {
-			x = appendZero(x, y.length() - x.length());
+			x = x.appendZero(x, y.s.length() - x.s.length());
 		}
-		cout << removeZero(karatsuba(x, y)) << endl;
+		res.s = karatsuba(x.s, y.s);
+		cout << removeZero(res.s) << endl;
 	}
 	return 0;
 }
@@ -70,6 +91,7 @@ string appendZero(string str, int n) {
 	}
 	return str;
 }
+
 string multiplyXY(string x, string y) {
 	int product;
 	product = ((int)x[0] - '0') * ((int)y[0] - '0');
